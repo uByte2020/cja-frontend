@@ -105,7 +105,7 @@
       <div>
         <div class="row justify-content-center pl-3 pr-3">
           <div
-            class="col-md-4 col-sm-4 mt-4 mr-0 ml-0"
+            class="col-md-4 col-sm-4 mt-4 mr-0 ml-0 crd-container"
             v-for="service in services"
             :key="service.id"
           >
@@ -205,7 +205,8 @@ export default {
             "Identificamos as possibilidades de perdas e danos e recomendamos as coberturas adequadas para o ressarcimento de eventuais prejuízos."
         }
       ],
-      position: 0
+      position: 0,
+      scrollPosition: null
     };
   },
   methods: {
@@ -213,13 +214,6 @@ export default {
       this.position = pos;
       $("#modal-see-more").modal("show");
     }
-  },
-  mounted() {
-    // window.scroll({
-    //   top: 2500,
-    //   left: 0,
-    //   behavior: "smooth"
-    // });
   }
 };
 </script>
@@ -245,7 +239,7 @@ html {
   border: none;
   height: 370px;
   margin: auto;
-  width: 90%;
+  width: 88%;
 }
 
 .crd-img-top {
@@ -352,6 +346,10 @@ h4 {
   width: 100%;
 }
 @media only screen and (max-width: 768px) {
+  .crd-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
   .crd {
     width: 100%;
   }
@@ -365,7 +363,6 @@ h4 {
   }
   #tipos-seguros span {
     font-size: 70px;
-    margin-left: 118px;
   }
   #tipos-seguros p {
     text-align: center;

@@ -15,22 +15,26 @@
           <i class="fas fa-bars"></i>
         </span>
       </button>
-      <div id="meu_links" class="collapse navbar-collapse flex-row-reverse">
+      <nav id="meu_links" class="collapse navbar-collapse flex-row-reverse">
         <ul class="navbar-nav" id="header-menu">
           <li class="nav-item">
-            <a href="#slide-show" @click="scrollTo('#slide-show')" class="nav-link activo">Início</a>
+            <a
+              href="#slide-show"
+              @click="scrollTo('#slide-show', $event)"
+              class="nav-link activo"
+            >Início</a>
           </li>
           <li class="nav-item">
-            <a href="#about-us" @click="scrollTo('#about-us')" class="nav-link">Sobre nós</a>
+            <a href="#about-us" @click="scrollTo('#about-us', $event)" class="nav-link">Sobre nós</a>
           </li>
           <li class="nav-item">
-            <a href="#servicos" @click="scrollTo('#servicos')" class="nav-link">Serviços</a>
+            <a href="#servicos" @click="scrollTo('#servicos', $event)" class="nav-link">Serviços</a>
           </li>
           <li class="nav-item">
-            <a href="#parceiros" @click="scrollTo('#parceiros')" class="nav-link">Parceiros</a>
+            <a href="#parceiros" @click="scrollTo('#parceiros', $event)" class="nav-link">Parceiros</a>
           </li>
           <li class="nav-item">
-            <a href="#contactos" @click="scrollTo('#contactos')" class="nav-link">Contactos</a>
+            <a href="#contactos" @click="scrollTo('#contactos', $event)" class="nav-link">Contactos</a>
           </li>
           <!-- <li class="nav-item">
             <router-link to="/servicos" class="nav-link">
@@ -38,7 +42,7 @@
             </router-link>
           </li>-->
         </ul>
-      </div>
+      </nav>
     </div>
 
     <router-view name="aux"></router-view>
@@ -48,7 +52,7 @@
       <div class="row">
         <div class="col-md-3">
           <ul>
-            <li>Servicos</li>
+            <li>Serviços</li>
             <li>&#10095; Consultoria</li>
             <li>&#10095; Análise de Risco</li>
             <li>&#10095; Gestão da carteira de Seguro</li>
@@ -61,11 +65,15 @@
           <ul>
             <li>Contactos</li>
             <li>
-              <i class="fas fa-phone" style="color: #dd4a40"></i>
+              <i class="fas fa-envelope" style="color: #8ec03b;"></i>
+              geral@cjaseguros.com
+            </li>
+            <li>
+              <i class="fas fa-phone" style="color: #8ec03b;"></i>
               991 139 311
             </li>
             <li>
-              <i class="fas fa-phone" style="color: #dd4a40"></i>
+              <i class="fas fa-phone" style="color: #8ec03b;"></i>
               928 724 627
             </li>
           </ul>
@@ -74,7 +82,7 @@
           <ul>
             <li>Onde estamos</li>
             <li>
-              <i class="fas fa-map-marker-alt" style="color: #dd4a40"></i>
+              <i class="fas fa-map-marker-alt" style="color: #8ec03b;"></i>
               Centralidade do Kilamba Edifício K2
             </li>
           </ul>
@@ -95,6 +103,14 @@
           </ul>
         </div>
       </div>
+      <div class="row p-0 m-0">
+        <div class="col-md-12 p-0 m-0 text-center">
+          <p
+            class="p-0 m-0"
+            style="font-size:10px"
+          >&copy;Todos Direitos Estão Reservados; Powered by uByte</p>
+        </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -102,8 +118,10 @@
 import $ from "jquery";
 export default {
   methods: {
-    scrollTo(sessionId) {
+    scrollTo(sessionId, event) {
       const $root = $("html, body");
+      $(".nav-link").removeClass("activo");
+      $(event.target).addClass("activo");
 
       $root.animate(
         {
@@ -196,8 +214,6 @@ footer ul li a:hover {
   #main_menu {
     position: relative;
     width: 100%;
-  }
-  #logotipo {
   }
   #main_menu .navbar-brand {
     margin-left: 0;
