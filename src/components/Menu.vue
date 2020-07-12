@@ -1,8 +1,8 @@
 <template>
   <div id="teste">
     <div class="navbar navbar-expand-sm" id="main_menu">
-      <a href="#" class="navbar-brand" style="margin-left: 3%;">
-        <img src="../assets/images/logo.png" alt style="width: 30%;object-fit: contain;" />
+      <a href="#" class="navbar-brand" id="logotipo" style="margin-left: 3%;">
+        <img src="../assets/images/logo.png" alt style="width: 25%;object-fit: contain;" />
       </a>
       <button
         class="navbar-toggler"
@@ -18,29 +18,33 @@
       <div id="meu_links" class="collapse navbar-collapse flex-row-reverse">
         <ul class="navbar-nav" id="header-menu">
           <li class="nav-item">
-            <router-link to="/" class="nav-link activo" v-on:click.native="ativar">Início</router-link>
+            <a href="#slide-show" @click="scrollTo('#slide-show')" class="nav-link activo">Início</a>
           </li>
           <li class="nav-item">
-            <a href="#about-us" class="nav-link">Sobre nós</a>
+            <a href="#about-us" @click="scrollTo('#about-us')" class="nav-link">Sobre nós</a>
           </li>
           <li class="nav-item">
-            <a href="#servicos" class="nav-link">Serviços</a>
+            <a href="#servicos" @click="scrollTo('#servicos')" class="nav-link">Serviços</a>
           </li>
           <li class="nav-item">
-            <a href="#parceiros" class="nav-link">Parceiros</a>
+            <a href="#parceiros" @click="scrollTo('#parceiros')" class="nav-link">Parceiros</a>
           </li>
           <li class="nav-item">
+            <a href="#contactos" @click="scrollTo('#contactos')" class="nav-link">Contactos</a>
+          </li>
+          <!-- <li class="nav-item">
             <router-link to="/servicos" class="nav-link">
               <i class="fas fa-sign-in-alt"></i> Login
             </router-link>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
 
     <router-view name="aux"></router-view>
 
-    <footer class="container-fluid text-white">
+    <footer id="contactos" class="container-fluid text-white pt-3">
+      <h4 class="text-center text-uppercase">Contactos</h4>
       <div class="row">
         <div class="col-md-3">
           <ul>
@@ -95,8 +99,23 @@
   </div>
 </template>
 <script>
+import $ from "jquery";
 export default {
   methods: {
+    scrollTo(sessionId) {
+      const $root = $("html, body");
+
+      $root.animate(
+        {
+          scrollTop: $(sessionId).offset().top
+        },
+        500,
+        function() {
+          window.location.hash = sessionId;
+        }
+      );
+      return false;
+    },
     ativar: function() {
       var menuItemAtivo = document.querySelectorALL("nav-item");
       for (var i = 0; i < menuItemAtivo.length; i++) {
@@ -107,7 +126,7 @@ export default {
   }
 };
 </script>
-<style  scoped>
+<style scoped>
 #header-menu {
   margin-right: 5%;
 }
@@ -160,7 +179,7 @@ footer {
   background: #2b2f36;
 }
 footer > .row {
-  padding: 3%;
+  padding: 1%;
 }
 footer ul {
   list-style-type: none;
@@ -178,10 +197,13 @@ footer ul li a:hover {
     position: relative;
     width: 100%;
   }
+  #logotipo {
+  }
   #main_menu .navbar-brand {
     margin-left: 0;
-    border: 1px solid red;
-    display: none;
+    width: 80%;
+    /* border: 1px solid red; */
+    /* display: none; */
   }
   .navbar-nav {
     margin-left: 0;
@@ -190,9 +212,16 @@ footer ul li a:hover {
     padding: 1%;
   }
   .nav-link {
-    font-size: 10px;
+    font-size: 15px;
     width: 100px;
-    text-align: justify;
+    text-align: center;
+    margin: auto;
+  }
+
+  #btn_collapse {
+    position: relative;
+    /* left: 87%; */
+    width: 10%;
   }
 }
 </style>
